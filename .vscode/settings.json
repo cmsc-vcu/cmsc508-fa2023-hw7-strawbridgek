@@ -1,0 +1,32 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "cmsc508.com",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "HR database",
+            "database": "23FA_hr_strawbridgek",
+            "username": "23FA_strawbridgek",
+            "password": "Shout4_strawbridge_GOME"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "cmsc508.com",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "Users database",
+            "database": "23FA_users_strawbridgek",
+            "username": "23FA_strawbridgek",
+            "password": "Shout4_strawbridgek_GOME"
+        }
+    ]
+}
