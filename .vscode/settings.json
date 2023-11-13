@@ -23,7 +23,7 @@
             "server": "cmsc508.com",
             "port": 3306,
             "driver": "MySQL",
-            "name": "Users database",
+            "name": "users db",
             "database": "23FA_users_strawbridgek",
             "username": "23FA_strawbridgek",
             "password": "Shout4_strawbridgek_GOME"

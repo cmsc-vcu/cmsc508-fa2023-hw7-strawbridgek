@@ -18,6 +18,8 @@
 
 SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS people;
+DROP TABLE IF EXISTS skills;
+DROP TABLE IF EXISTS peopleskills;
 # ... 
 SET FOREIGN_KEY_CHECKS=1;
 
@@ -28,11 +30,24 @@ SET FOREIGN_KEY_CHECKS=1;
 # time committment offers some sense of how much time was required (or will be required) to gain the skill.
 # You can assign the skill descriptions.  Please be creative!
 
+CREATE TABLE skills (
+    skills_id int not null,
+    skills_name varchar(255) not null,
+    skills_description varchar(255) not null,
+    skills_tag varchar(255) not null,
+    skills_url varchar(255), 
+    skills_time_commitment int,
+    primary key (skills_id)
+);
 
 # Section 3
 # Populate skills
 # Populates the skills table with eight skills, their tag fields must exactly contain “Skill 1”, “Skill 2”, etc.
 # You can assign skill names.  Please be creative!
+
+INSERT INTO skills (skills_id, skills_name, skills_description, skills_tag) values
+(1, 'kick boxing', 'visuallize this!', 'skill 1'),
+(2, 'pyhton coding', 'writing python programs', 'skill 2');
 
 
 # Section 4
@@ -41,23 +56,47 @@ SET FOREIGN_KEY_CHECKS=1;
 # All other fields can default to NULL.
 
 CREATE TABLE people (
-    people_id int,
+    people_id int NOT NULL,
+    people_first_name varchar(256),
     people_last_name varchar(256) NOT NULL,
+    people_email varchar(256), 
+    people_linkedin_url varchar(256),
+    people_headshot_url varchar(256),
+    people_discord_handle varchar(256),
+    people_brief_bio varchar(256),
+    people_date_joined varchar(256) NOT NULL,
     PRIMARY KEY (people_id)
 );
+
 
 # Section 5
 # Populate people with six people.
 # Their last names must exactly be “Person 1”, “Person 2”, etc.
 # Other fields are for you to assign.
 
-insert into people (people_id,people_last_name) values (1,'Person 1');
+insert into people (people_id,people_last_name,people_date_joined) values
+ (1,'Person 1','Sept'),
+ (2,'Person 2','Oct'),
+ (3,'Person 3','Nov'),
+ (4,'Person 4','Dec'),
+ (5,'Person 5','Jan'),
+ (6,'Person 6','Feb')
+ ;
 
 
 # Section 6
 # Create peopleskills( id, skills_id, people_id, date_acquired )
 # None of the fields can ba NULL. ID can be auto_increment.
 
+create table peopleskills (
+    id int auto_increment,
+    skills_id int,
+    people_id int,
+    date_acquired date default (current_date),
+    primary key (id),
+    foreign key (skills_id) references skills (id),
+    foreign key (people_id) references people (people_id)
+);
 
 # Section 7
 # Populate peopleskills such that:
@@ -73,6 +112,33 @@ insert into people (people_id,people_last_name) values (1,'Person 1');
 # Person 10 has skills 1,4,5;
 # Note that no one has yet acquired skills 7 and 8.
  
+insert into peopleskills(people_id, skills_id) values
+(1,1),
+(1,3),
+(1,6),
+(2,3),
+(2,4),
+(2,5),
+(3,1),
+(3,5),
+(5,3),
+(5,6),
+(6,2),
+(6,3),
+(6,4),
+(7,3),
+(7,5),
+(7,6),
+(8,1),
+(8,3),
+(8,5),
+(8,6),
+(9,2),
+(9,5),
+(9,6),
+(10,1),
+(10,4),
+(10,5);
 
 # Section 8
 # Create roles( id, name, sort_priority )
