@@ -20,6 +20,8 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS people;
 DROP TABLE IF EXISTS skills;
 DROP TABLE IF EXISTS peopleskills;
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTs peopleroles;
 # ... 
 SET FOREIGN_KEY_CHECKS=1;
 
@@ -47,7 +49,12 @@ CREATE TABLE skills (
 
 INSERT INTO skills (skills_id, skills_name, skills_description, skills_tag) values
 (1, 'kick boxing', 'visuallize this!', 'skill 1'),
-(2, 'pyhton coding', 'writing python programs', 'skill 2');
+(2, 'pyhton coding', 'writing python programs', 'skill 2'),
+(3, 'swimming', 'being good at swimming', 'skill 3'),
+(4, 'dancing', 'knowing how to dance', 'skill 4'),
+(5, 'typing', 'being good at typing','skill 5'),
+(6, 'gaming', 'being good at playing games', 'skill 6')
+;
 
 
 # Section 4
@@ -80,7 +87,11 @@ insert into people (people_id,people_last_name,people_date_joined) values
  (3,'Person 3','Nov'),
  (4,'Person 4','Dec'),
  (5,'Person 5','Jan'),
- (6,'Person 6','Feb')
+ (6,'Person 6','Feb'),
+ (7,'Person 7','Mar'),
+ (8,'Person 8','Apr'),
+ (9,'Person 9','May'),
+ (10,'Person 10','Jun')
  ;
 
 
@@ -94,7 +105,7 @@ create table peopleskills (
     people_id int,
     date_acquired date default (current_date),
     primary key (id),
-    foreign key (skills_id) references skills (id),
+    foreign key (skills_id) references skills (skills_id),
     foreign key (people_id) references people (people_id)
 );
 
@@ -138,12 +149,19 @@ insert into peopleskills(people_id, skills_id) values
 (9,6),
 (10,1),
 (10,4),
-(10,5);
+(10,5)
+;
 
 # Section 8
 # Create roles( id, name, sort_priority )
 # sort_priority is an integer and is used to provide an order for sorting roles
 
+create table roles (
+    id int auto_increment,
+    name varchar(255),
+   sort_priority int,
+   primary key (id)
+);
 
 
 # Section 9
@@ -151,13 +169,27 @@ insert into peopleskills(people_id, skills_id) values
 # Designer, Developer, Recruit, Team Lead, Boss, Mentor
 # Sort priority is assigned numerically in the order listed above (Designer=10, Developer=20, Recruit=30, etc.)
 
-
+insert into roles(id, name, sort_priority) values
+(1,'Designer',10),
+(2,'Developer',20),
+(3,'Recruit',30),
+(4,'Team Lead',40),
+(5,'Boss',50),
+(6,'Mentor',60)
+;
 
 # Section 10
 # Create peopleroles( id, people_id, role_id, date_assigned )
 # None of the fields can be null.  ID can be auto_increment
 
-
+create table peopleroles (
+    id int auto_increment,
+    people_id int,
+    role_id int,
+    date_assigned date default (current_date),
+    primary key (id),
+    foreign key (role_id) references roles (id)
+);
 
 # Section 11
 # Populate peopleroles
@@ -172,3 +204,20 @@ insert into peopleskills(people_id, skills_id) values
 # Person 9 is Developer
 # Person 10 is Developer and Designer
 
+insert into peopleroles(id, people_id) values
+(1,20),
+(2,50),
+(2,60),
+(3,20),
+(3,40),
+(4,30),
+(5,30),
+(6,20),
+(6,10),
+(7,10),
+(8,10),
+(8,40),
+(9,20),
+(10,20),
+(10,10)
+;
