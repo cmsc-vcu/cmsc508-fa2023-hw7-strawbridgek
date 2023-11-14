@@ -153,6 +153,7 @@ insert into peopleskills(people_id, skills_id) values
 (10,5)
 ;
 
+
 # Section 8
 # Create roles( id, name, sort_priority )
 # sort_priority is an integer and is used to provide an order for sorting roles
