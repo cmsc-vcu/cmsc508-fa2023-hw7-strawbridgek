@@ -54,7 +54,9 @@ INSERT INTO skills (skills_id, skills_name, skills_description, skills_tag) valu
 (3, 'swimming', 'being good at swimming', 'skill 3'),
 (4, 'dancing', 'knowing how to dance', 'skill 4'),
 (5, 'typing', 'being good at typing','skill 5'),
-(6, 'gaming', 'being good at playing games', 'skill 6')
+(6, 'gaming', 'being good at playing games', 'skill 6'),
+(7, 'drawing', 'being good at drawing', 'skill 7'),
+(8, 'java coding', 'writing java programs', 'skill 8')
 ;
 
 
