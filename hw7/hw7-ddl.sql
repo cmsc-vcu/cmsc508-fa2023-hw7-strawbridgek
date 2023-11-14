@@ -42,6 +42,7 @@ CREATE TABLE skills (
     primary key (skills_id)
 );
 
+
 # Section 3
 # Populate skills
 # Populates the skills table with eight skills, their tag fields must exactly contain “Skill 1”, “Skill 2”, etc.
@@ -64,14 +65,14 @@ INSERT INTO skills (skills_id, skills_name, skills_description, skills_tag) valu
 
 CREATE TABLE people (
     people_id int NOT NULL,
-    people_first_name varchar(256),
-    people_last_name varchar(256) NOT NULL,
-    people_email varchar(256), 
-    people_linkedin_url varchar(256),
-    people_headshot_url varchar(256),
-    people_discord_handle varchar(256),
-    people_brief_bio varchar(256),
-    people_date_joined varchar(256) NOT NULL,
+    people_first_name varchar(255),
+    people_last_name varchar(255) NOT NULL,
+    people_email varchar(255), 
+    people_linkedin_url varchar(255),
+    people_headshot_url varchar(255),
+    people_discord_handle varchar(255),
+    people_brief_bio varchar(255),
+    people_date_joined varchar(255) NOT NULL,
     PRIMARY KEY (people_id)
 );
 
@@ -158,7 +159,7 @@ insert into peopleskills(people_id, skills_id) values
 
 create table roles (
     id int auto_increment,
-    name varchar(255),
+    roles_name varchar(255),
    sort_priority int,
    primary key (id)
 );
@@ -169,7 +170,7 @@ create table roles (
 # Designer, Developer, Recruit, Team Lead, Boss, Mentor
 # Sort priority is assigned numerically in the order listed above (Designer=10, Developer=20, Recruit=30, etc.)
 
-insert into roles(id, name, sort_priority) values
+insert into roles(id, roles_name, sort_priority) values
 (1,'Designer',10),
 (2,'Developer',20),
 (3,'Recruit',30),
@@ -184,8 +185,8 @@ insert into roles(id, name, sort_priority) values
 
 create table peopleroles (
     id int auto_increment,
-    people_id int,
-    role_id int,
+    people_id int NOT NULL,
+    role_id int NOT NULL,
     date_assigned date default (current_date),
     primary key (id),
     foreign key (role_id) references roles (id)
@@ -204,20 +205,20 @@ create table peopleroles (
 # Person 9 is Developer
 # Person 10 is Developer and Designer
 
-insert into peopleroles(id, people_id) values
-(1,20),
-(2,50),
-(2,60),
-(3,20),
-(3,40),
-(4,30),
-(5,30),
-(6,20),
-(6,10),
-(7,10),
-(8,10),
-(8,40),
-(9,20),
-(10,20),
-(10,10)
+insert into peopleroles(people_id, role_id) values
+(1,2),
+(2,5),
+(2,6),
+(3,2),
+(3,4),
+(4,3),
+(5,3),
+(6,2),
+(6,1),
+(7,1),
+(8,1),
+(8,4),
+(9,2),
+(10,2),
+(10,1)
 ;
