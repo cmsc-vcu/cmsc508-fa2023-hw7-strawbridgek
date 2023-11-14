@@ -10,7 +10,7 @@ format:
         code-copy: true
 ---
 
-This document shows a database of a company-wide resume. It shows the skills and roles of all the different in the company. There is sample data presented and shows certain results based on the filters.
+This document shows a database of a company-wide resume. It shows the skills and roles of all the different people in the company. There is sample data presented and shows certain results based on the filters.
 
 GITHUB URL: https://github.com/cmsc-vcu/cmsc508-fa2023-hw7-strawbridgek 
 
@@ -94,7 +94,7 @@ Shows the database of a company that showcase skills and roles based upon differ
 
 ## Crows-foot diagram
 
-This diagram shows of the attributes of the custumer. Which is their id, first name, and last name. The customer uses delivery address which has a id. The customer also uses places to get orders.
+This diagram shows off the attributes of the custumer. Which is their id, first name, and last name. The customer uses delivery address which has a id. The customer also uses places to get orders.
 
 ```{mermaid}
 %%| echo: false
@@ -220,9 +220,9 @@ df
 ### List people names and email addresses ordered by last_name
 ```{python}
 sql = f"""
-SELECT first_name, last_name, email
+SELECT people_first_name, people_last_name, people_email
 FROM people
-ORDER BY last_name;
+ORDER BY people_last_name;
 """
 ```
 
